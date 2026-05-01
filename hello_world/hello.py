@@ -13,8 +13,6 @@ def main():
     else:
         print(f"You entered a string: {number}")
 
-def Teste():
-    print("This is a test function.")
-    
+        
 if __name__ == "__main__":
     main()
