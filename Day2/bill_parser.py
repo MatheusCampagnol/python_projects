@@ -1,5 +1,6 @@
 #Testing Parsing Methods. 
-#Importing dependencies.
+
+#Importing necessary libraries:
 import argparse
 from docx import Document
 

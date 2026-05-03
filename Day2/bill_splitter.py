@@ -1,3 +1,7 @@
+#Importing dependencies.
+from docx import Document
+
+
 #Variables:
 total_bill = 0.0
 tip_percentage = 0.0
@@ -38,6 +42,18 @@ def bill_calculation(total_bill, tip_percentage, number_of_people):
     except ZeroDivisionError as e:
         print(f"Error: {e}")
 
+def document_processing():
+#Creates the new document.
+    doc = Document()
+    doc.add_paragraph("Hello! This is a bill splitter program.")
+    doc.add_paragraph(f"Total Bill: ${total_bill:.2f}")
+    doc.add_paragraph(f"Tip Percentage: {tip_percentage}%")
+    doc.add_paragraph(f"Number of People: {number_of_people}")
+    doc.add_paragraph(f"Each person should pay: ${value_per_person:.2f}")
+    doc.save("bill_splitter_output.docx")
+#Confirmation message that the document has been created.
+    print("Document 'bill_splitter_output.docx' has been created with the bill details.")   
+
 def main():
 
 #Get user input.
@@ -45,6 +61,8 @@ def main():
 
 #Calculate each person's share of the bill.    
     bill_calculation(total_bill, tip_percentage, number_of_people)
+#Creates the document for the guests.
+    document_processing()
     
 #Calls Main Funcition. Start of the program.
 if __name__ == "__main__":
