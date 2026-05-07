@@ -6,5 +6,5 @@ randomint = 0
 
 def generate_random_number():
     global randomint
-    randomint = random.randint(1, 3)
+    randomint = random.randint(0, 2)
     return randomint
