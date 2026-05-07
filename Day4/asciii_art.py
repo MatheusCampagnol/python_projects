@@ -1,6 +1,7 @@
 #Declaring variables for ASCII values for rock, paper and scissors:
 #Rock
 # asciii_art.py
+
 rock = """
     _______
 ---'   ____)
