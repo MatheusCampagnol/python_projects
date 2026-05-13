@@ -51,13 +51,13 @@ def generate_blanks(chosen_word):
 
 #Selects a random word from list word_list and returns it.
 def select_random_word(word_list):
-    return random.choice(word_list)
+    chosen_word = random.choice(word_list)
+    return chosen_word
 
 #1. Sets chosen_word from a list.
 #2. Then generates the blanks with the lenght of the word.
 #3. Calls guess_letter which then calls the user input.
 def main():
-    global chosen_word
     chosen_word = select_random_word(word_list)
     generate_blanks(chosen_word)
 #Joins the blank appends into one string.               
