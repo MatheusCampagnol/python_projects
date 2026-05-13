@@ -1,3 +1,5 @@
+#TODO: Fazer uma função que faça a lista blanks virar uma string. Após isso, comparar com a palavra pré-selecionada.
+
 import random
 
 word_list = ["apple", "banana", "window", "garden", "river", "mountain",
@@ -17,7 +19,6 @@ lives = 6
 def guess_letter():
     global lives
     while True and lives > 0:
-        print(chosen_word)
         user_input = get_user_input()
         if user_input in chosen_word:
             print(f"Good job! The letter '{user_input}' is in the word.")
@@ -44,9 +45,9 @@ def get_user_input():
 #Generates blanks in the code.
 def generate_blanks(chosen_word):
     global blanks
-    blanks = ""
+    blanks = []
     for _ in range(len(chosen_word)):
-        blanks += "_ "
+        blanks.append("_")  
     return blanks
 
 
@@ -61,7 +62,8 @@ def main():
     global chosen_word
     chosen_word = select_random_word(word_list)
     generate_blanks(chosen_word)
-    print(blanks)
+#Joins the blank appends into one string.               
+    print(" ".join(blanks)) 
     guess_letter()
 
 if __name__ == "__main__":
