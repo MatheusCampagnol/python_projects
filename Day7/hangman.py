@@ -1,5 +1,5 @@
 #TODO: Fazer uma função que faça a lista blanks virar uma string. Após isso, comparar com a palavra pré-selecionada.
-
+#TODO: Implementar a rotina de vitória. Após adivinhar todas as letras da palavra, o usuário ganha.
 import random
 
 word_list = ["apple", "banana", "window", "garden", "river", "mountain",
@@ -17,7 +17,6 @@ lives = 6
 
 #Every guess is checked after the input.
 def guess_letter():
-    global lives
     while True and lives > 0:
         user_input = get_user_input()
         if user_input in chosen_word:
@@ -34,7 +33,6 @@ def guess_letter():
 
 #Gets user input. Any inputs lenghts > 1 will be discarded.
 def get_user_input():
-    global user_input
     while True:
         user_input = input("Please enter a letter: ").lower()
         if len(user_input) != 1:
