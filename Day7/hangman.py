@@ -12,8 +12,6 @@ word_list = ["apple", "banana", "window", "garden", "river", "mountain",
             "island", "camera", "guitar", "pocket", "mirror", "button",
             "rocket", "planet"]
 
-#word_list = ["bottle"]
-
 chosen_word = ""
 lives = 6
 
@@ -90,12 +88,20 @@ stage0 = """
 """
 stages = [stage0, stage1, stage2, stage3, stage4, stage5, stage6]
 
+letters_used = []
+
+def is_letter_already_used(user_input,letters_used):
+    if user_input in letters_used:
+        print(f"You already tried the letter '{user_input}'.")
+        return True
+    return False
+
 def print_straw_man(lives):
     print(stages[lives])
 
 def check_if_user_won(blanks):
     if "".join(blanks) == chosen_word:
-        print(f"You won, nice job!")
+        print(f"**********************************You won, nice job!**********************************")
         return True
             
 
@@ -104,6 +110,12 @@ def guess_letter():
     global lives
     while lives > 0:
         user_input = get_user_input()
+
+        if is_letter_already_used(user_input, letters_used):
+            continue
+
+        letters_used.append(user_input)
+
         if user_input in chosen_word:
             print(f"Good job! The letter '{user_input}' is in the word.")
 #Gets the range of chosen_word and for every occurence of user_input, replaces the blank in the list with the letter user selected.
@@ -117,11 +129,13 @@ def guess_letter():
         else:
             print(f"Sorry, the letter '{user_input}' is not in the word.")
             lives -= 1
+
             if lives == 0:
                 print_straw_man(lives)
                 print(" ".join(blanks))
-                print(f"You lose.")
+                print(f"**********************************You lose!!!!!**********************************")
                 break
+
             print_straw_man(lives)
             print(" ".join(blanks))
         
