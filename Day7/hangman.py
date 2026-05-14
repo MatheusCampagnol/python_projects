@@ -30,79 +30,6 @@ def check_if_user_won(blanks):
         return True
             
 
-#Stage variables for our hangman.
-
-stage6 = """
-  +---+
-  |   |
-      |
-      |
-      |
-      |
-=========
-"""
-
-stage5 = """
-  +---+
-  |   |
-  O   |
-      |
-      |
-      |
-=========
-"""
-
-stage4 = """
-  +---+
-  |   |
-  O   |
-  |   |
-      |
-      |
-=========
-"""
-
-stage3 = """
-  +---+
-  |   |
-  O   |
- /|   |
-      |
-      |
-=========
-"""
-
-stage2 = """
-  +---+
-  |   |
-  O   |
- /|\\  |
-      |
-      |
-=========
-"""
-
-stage1 = """
-  +---+
-  |   |
-  O   |
- /|\\  |
- /    |
-      |
-=========
-"""
-
-stage0 = """
-  +---+
-  |   |
-  O   |
- /|\\  |
- / \\  |
-      |
-=========
-"""
-stages = [stage0, stage1, stage2, stage3, stage4, stage5, stage6]
-
 letters_used = []
 
 def is_letter_already_used(user_input,letters_used):
@@ -112,7 +39,7 @@ def is_letter_already_used(user_input,letters_used):
     return False
 
 def print_straw_man(lives):
-    print(stages[lives])
+    print(sa.stages[lives])
 
 def check_if_user_won(blanks):
     if "".join(blanks) == chosen_word:
