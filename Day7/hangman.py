@@ -12,22 +12,118 @@ word_list = ["apple", "banana", "window", "garden", "river", "mountain",
             "island", "camera", "guitar", "pocket", "mirror", "button",
             "rocket", "planet"]
 
-chosen_word = []
+#word_list = ["bottle"]
+
+chosen_word = ""
 lives = 6
+
+#Stage variables for our hangman.
+
+stage6 = """
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+"""
+
+stage5 = """
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========
+"""
+
+stage4 = """
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========
+"""
+
+stage3 = """
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========
+"""
+
+stage2 = """
+  +---+
+  |   |
+  O   |
+ /|\\  |
+      |
+      |
+=========
+"""
+
+stage1 = """
+  +---+
+  |   |
+  O   |
+ /|\\  |
+ /    |
+      |
+=========
+"""
+
+stage0 = """
+  +---+
+  |   |
+  O   |
+ /|\\  |
+ / \\  |
+      |
+=========
+"""
+stages = [stage0, stage1, stage2, stage3, stage4, stage5, stage6]
+
+def print_straw_man(lives):
+    print(stages[lives])
+
+def check_if_user_won(blanks):
+    if "".join(blanks) == chosen_word:
+        print(f"You won, nice job!")
+        return True
+            
 
 #Every guess is checked after the input.
 def guess_letter():
-    while True and lives > 0:
+    global lives
+    while lives > 0:
         user_input = get_user_input()
         if user_input in chosen_word:
             print(f"Good job! The letter '{user_input}' is in the word.")
-        elif lives == 0:
-            print(f"You lose.")
-            break
+#Gets the range of chosen_word and for every occurence of user_input, replaces the blank in the list with the letter user selected.
+            for i in range(len(chosen_word)):
+                if chosen_word[i] == user_input:
+                    blanks[i] = user_input  
+            print_straw_man(lives)                     
+            print(" ".join(blanks)) 
+            print("______________________________________________________________________________________________________________________")
+            check_if_user_won(blanks)
         else:
             print(f"Sorry, the letter '{user_input}' is not in the word.")
             lives -= 1
-            print(lives)
+            if lives == 0:
+                print_straw_man(lives)
+                print(" ".join(blanks))
+                print(f"You lose.")
+                break
+            print_straw_man(lives)
+            print(" ".join(blanks))
         
 
 
@@ -61,6 +157,7 @@ def main():
     chosen_word = select_random_word(word_list)
     generate_blanks(chosen_word)
 #Joins the blank appends into one string.               
+    print_straw_man(lives)
     print(" ".join(blanks)) 
     guess_letter()
 
