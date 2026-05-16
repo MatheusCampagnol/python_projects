@@ -15,8 +15,7 @@ def process_message():
                 encrypted_letter.append(i)
                 continue
             else:
-                position = alphabet.index(i)
-                position += shift_number
+                position = (alphabet.index(i) + shift_number) % 26
                 encrypted_letter.append(alphabet[position])
     elif encode_or_decode == 'decode':
         for i in message:
@@ -24,8 +23,7 @@ def process_message():
                 encrypted_letter.append(i)
                 continue
             else:
-                position = alphabet.index(i)
-                position -= shift_number
+                position = (alphabet.index(i) - shift_number) % 26
                 encrypted_letter.append(alphabet[position])
             
     print(f"Here's your message: {''.join(encrypted_letter)}")
