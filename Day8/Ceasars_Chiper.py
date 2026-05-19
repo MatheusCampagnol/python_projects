@@ -1,5 +1,5 @@
 #Imports:
-import Cyphers_Ascii as ca
+import Day8.Cyphers_Ascii as ca
 
 alphabet = list("abcdefghijklmnopqrstuvwxyz") * 2 #*2 foi sugestão do Google após eu pesquisar por estouro de índice.
 
