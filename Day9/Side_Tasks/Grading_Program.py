@@ -18,5 +18,8 @@ for key in student_scores:
         student_grades[key] = 'Acceptable'  
     else:
         student_grades[key] = 'Fail'
-        
-print(f"Here are the grades: {student_grades}")
+
+print("Here are the grades:\n")
+
+for student, grade in student_grades.items():
+    print(f"{student}: {grade}")
