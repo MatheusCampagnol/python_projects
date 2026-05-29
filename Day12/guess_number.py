@@ -1,29 +1,41 @@
 from rich import print
 from rich.progress import track
+import random 
 import ascii_art as aa
 import time
 
+EASY_ATTEMPTS = 10
+HARD_ATTEMPTS = 5
+
+def get_number(prompt):
+    while True:
+#Prompt aqui pega o valor e faz um strip dele removendo quaisquer espaços.        
+        value = input(prompt).strip()
+#Retorna sempre um int.
+        try:
+            return int(value)
+        except ValueError:
+            print("[bold red]Invalid number.[/bold red]")
+
+    
+def generate_random_number():
+    return random.randint(1, 100)
 
 
-
-
-
-
-
-def generate_status_bar():
+def show_loading_bar():
     for _ in track(range(1000), description="Generating number..."):
         time.sleep(0.001)
     print("[bold green]Number generated![/bold green]")
         
 
-def difficulty_option(prompt):
+def choose_difficulty(prompt):
     if prompt == "easy":
-        return 10
+        return EASY_ATTEMPTS
     elif prompt == "hard":
-        return 5
+        return HARD_ATTEMPTS 
     else:
         print("[bold red]Invalid input. Please type only 'easy' or 'hard': [/bold red]")
-        return difficulty_option(input("Choose a difficulty. Type 'easy' or 'hard'. ").lower())
+        return choose_difficulty(input("Choose a difficulty. Type 'easy' or 'hard'. ").lower())
 
 
 def print_ascii():
@@ -32,11 +44,32 @@ def print_ascii():
     print("Generating number from 1 to 100.")
 
 def main(): 
-    difficulty = ""
 
     print_ascii()
-    generate_status_bar()
-    difficulty = difficulty_option(input("Choose a difficulty. Type 'easy' or 'hard': ").lower())
+    show_loading_bar()
+    random_number = generate_random_number()
+#    print(f"Psst, your number is: {random_number}")
+    chances_left = choose_difficulty(input("Choose a difficulty. Type 'easy' or 'hard': ").lower())
+    
+    while chances_left > 0:    
+        number = get_number("Make your guess: ")
+        
+        if number < random_number:
+            chances_left -= 1
+            if chances_left > 0:
+                print(f"Too low. Chances left: {chances_left}")
+
+        elif number > random_number:
+            chances_left -=1
+            if chances_left > 0:
+                print(f"Too high. Chances left: {chances_left}")
+
+        else:
+            print(f"[bold blue]That's it! The correct number has been guessed![/bold blue] Number was {random_number}!")
+            break
+    
+        if chances_left == 0:
+            print("[bold red]You ran out of chances![/bold red]")
 
 
 if __name__ == "__main__":
