@@ -8,8 +8,7 @@ EASY_ATTEMPTS = 10
 HARD_ATTEMPTS = 5
 
 def get_number(prompt):
-    while True:
-#Prompt aqui pega o valor e faz um strip dele removendo quaisquer espaços.        
+    while True:      
         value = input(prompt).strip()
 #Retorna sempre um int.
         try:
