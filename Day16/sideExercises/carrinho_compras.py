@@ -30,3 +30,5 @@ carrinho1.adicionar_produto(produto1)
 carrinho1.adicionar_produto(produto2)
 carrinho1.mostrar_carrinho_de_compras()
 carrinho1.calcular_total()
+
+
